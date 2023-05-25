@@ -1,44 +1,27 @@
-<h1>User info</h1>
-  <%= form_with model: @book do |f| %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+    <h2>User info</h2>
+      <%= form_with model: @user do |f| %>
     
-    <h4>Name</h4>
-      <%= f.text_field :title %>
-    
-    profile
-    
-    <h4>Introduction</h4>
-      <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
-  <% end %>
-  
-  
-  <h1>Editing Post</h1>
-
-<%= form_for(@post) do |f| %>
-
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, id: :post_title %>
-  </div>
-
-  <div class="field">
-    <%= f.label :body %>
-    <%= f.text_area :body, id: :post_body %>
-  </div>
-
-  <div class="field">
-    <%= f.label :author %>
-    <%= f.text_field :author, id: :post_author %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-
-<%= link_to 'Back', posts_path %>
-
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+     <form>
+        <div class="form-group">
+          <label for="book_title">Title</label>
+          <input class="form-control book_title" type="text" name="book[title]" id="book_title">
+        </div>
+        <div class="form-group">
+          <label for="user_image">Image</label>
+          <input class="form-control-file user_image" accept=image/* type="file" name="user[profile_image]" id="user_profile_image">
+        </div>  
+        <div class="form-group">
+          <label for="book_opinion">Opinion</label>
+          <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
+        </div>
+      </form>
+    </div>
+  </div>  
+</div>
