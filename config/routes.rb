@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :books
   resources :users
+  
+  
 
   get '/homes/about/'=>'homes#about',as: 'about'
 

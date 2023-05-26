@@ -2,26 +2,19 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
-    <h2>User info</h2>
-      <%= form_with model: @user do |f| %>
-    
-     <form>
-        <div class="form-group">
-          <label for="book_title">Title</label>
-          <input class="form-control book_title" type="text" name="book[title]" id="book_title">
+    <h1>User info</h1>
+      <%= form_with model: @user, url:'/Users' do |f| %>
+      <p>Name</p>
+      <%= f.text_field :title %>
+      <p>Introduction</p>
+      <%= f.text_area :body %>
+        <div class="btn-wrapper col-10 mx-auto">
+          <div class="row">
+          <a class="btn btn-secondary" href="/books/show">Update User</a>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="user_image">Image</label>
-          <input class="form-control-file user_image" accept=image/* type="file" name="user[profile_image]" id="user_profile_image">
-        </div>  
-        <div class="form-group">
-          <label for="book_opinion">Opinion</label>
-          <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
-        </div>
-        <div class="form-group">
-          <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
-        </div>
-      </form>
-    </div>
+　　　 <% end %>
+     </div>
   </div>  
 </div>
+
