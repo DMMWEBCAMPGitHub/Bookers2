@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  
-  
+
+ 
   # GET /users or /users.json
   def index
     @user = current_user
@@ -23,12 +23,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
- 
+  def update
+    @user = User.find(params[:id])  #ユーザーの取得
+    @user.update(user_params)  #ユーザーのアップデート
+    redirect_to user_path(@user.id)  #ユーザーの詳細ページへのパス
+    flash[:notice] = "You have updated user successfully."
+  end
 
- 
+
 
   private
-   
+
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:name, :introduction, :profile_image)

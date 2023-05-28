@@ -1,3 +1,9 @@
+<div id="notice">
+  <%= flash[:notice] %>
+</div>
+
+
+
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
@@ -6,12 +12,12 @@
       <table class="table">
         <tbody>
         <tr>
-	        <th>name</th>
-	        <th><%=@user.name  %></th> <!--current_user.name ?? 今ログインしているユーザーの名前を表示-->
+          <th>name</th>
+         <th><%=@user.name  %></th> <!--current_user.name ?? 今ログインしているユーザーの名前を表示-->
         </tr>
         <tr>
-	        <th>introduction</th>
-	        <th><%=@user.introduction %></th>
+          <th>introduction</th>
+          <th><%=@user.introduction %></th>
         </tr>
         </tbody>
       </table>
@@ -20,18 +26,34 @@
         </div>
 
       <h2 class="mt-3">New book</h2>
-      <!--%= form_with model: Book.new, url book_path do |f| %-->
+        <%= form_with model: Book.new, method: :post do |f| %>
         <p>Title</p>
-  　　    <%= f.text_field :title %>
-	      <p>Opinion</p>
-  　　    <%= f.text_area :body %>
-	      <%= f.submit 'Create Book' %>
-　　　  <% end %>
+        <%= f.text_field :title %>
+      <p>Opinion</p>
+        <%= f.text_area :body %>
+       <%= f.submit 'Create Book', class:"btn btn-success" %>
+        <% end %>
       </div>
-      
-      
-    </div>
+
     <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+        <table class="table table-hover table-inverse">
+          <tbody>
+          <tr>
+            <td><%= link_to user_path(@book.user) do %>
+                <%= image_tag @book.user.get_profile_image %><br><%=@user.name  %><%end%></td>
+            <td><%= link_to book_path(@book) do %>
+                <%= @book.title %>
+                <%end%></td>
+            <td><%= @book.body%></td>
+            <% if @book.user == current_user %>
+            <td><%= link_to "Edit", edit_book_path, class: "btn-sm btn-success" %></td>
+            <td><%= link_to "Destroy", book_path(@book.id), method: :delete,class: "btn-sm btn-danger", "data-confirm" => "本当に消しますか？" %></td>
+            <td colspan="5"></td>
+          </tr>
+          <%end%>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>

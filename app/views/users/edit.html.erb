@@ -1,20 +1,17 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-
     <h1>User info</h1>
-      <%= form_with model: @user, url:'/Users' do |f| %>
-      <p>Name</p>
-      <%= f.text_field :title %>
-      <p>Introduction</p>
-      <%= f.text_area :body %>
-        <div class="btn-wrapper col-10 mx-auto">
-          <div class="row">
-          <a class="btn btn-secondary" href="/books/show">Update User</a>
-          </div>
-        </div>
-　　　 <% end %>
-     </div>
+    <%= form_with model: @user do |f| %>
+    <p><label for="inputName">Name</label></p>
+    <p><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%></p>
+    <p><label for="inputImage">Image</label></p>
+    <p><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></p>
+    <p><label for="inputName">Introduction</label></p>
+    <p><%= f.text_field :introduction%></p>
+    <p><%= f.submit "Update User", class: "btn btn-secondary" %></p>
+    <% end %>
+    </div>
   </div>  
 </div>
 

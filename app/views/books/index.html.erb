@@ -1,3 +1,16 @@
+<div id="notice">
+  <%= flash[:notice] %>
+</div>
+<% if @book %>
+  <% if @book.errors.any? %>
+    <%= @book.errors.count %>件のエラーが発生しました
+    <ul>
+    <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+<% end %>
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
@@ -20,15 +33,15 @@
         </div>
 
       <h2 class="mt-3">New book</h2>
-      <!--%= form_with model: Book.new, url book_path do |f| %-->
+        <%= form_with model: Book.new, method: :post do |f| %>
         <p>Title</p>
   　　    <%= f.text_field :title %>
 	      <p>Opinion</p>
   　　    <%= f.text_area :body %>
-	      <%= f.submit 'Create Book' %>
+	      <%= f.submit 'Create Book', class:"btn btn-success" %>
 　　　  <% end %>
       </div>
-      
+
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
        <table class="table table-hover table-inverse">
@@ -42,17 +55,17 @@
         <tbody>
           <% @books.each do |book| %>
           <tr>
-            <td><%= image_tag book.user.get_profile_image %></td>
-            <td><%= book.title%></td>
+            <td><%= link_to user_path(book.user) do %><%= image_tag book.user.get_profile_image %><%end%></td>
+            <td><%= link_to book_path(book.id) do %><%= book.title%><%end%></td>
             <td><%= book.body%></td>
           </tr>
           <%end%>
-        </tbody>  
-       </table>  
+        </tbody>
+       </table>
     </div>
   </div>
 </div>
 
 
- 
+
 
