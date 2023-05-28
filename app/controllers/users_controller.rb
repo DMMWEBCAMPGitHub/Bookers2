@@ -1,16 +1,17 @@
 class UsersController < ApplicationController
+before_action :correct_user, only: [:edit, :update]
 
- 
   # GET /users or /users.json
   def index
     @user = current_user
     @users = User.all
+    @book = Book.new
   end
 
   # GET /users/1 or /users/1.json
   def show
     @user = User.find(params[:id])
-    
+    @book = Book.new
   end
 
   # GET /users/new
@@ -38,4 +39,13 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :introduction, :profile_image)
     end
+
+    def correct_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+    redirect_to user_path(current_user)
+  end
+
+  end
+
 end
